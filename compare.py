@@ -13,8 +13,8 @@ identifiers_missing_from_datastore = sorted(list(dashboard_identifiers - datasto
 
 # Add a count of all activities
 print "Preparing output data"
-data_missing_from_dashboard = {'count': len(missing_from_dashboard), 'identifiers': identifiers_missing_from_dashboard}
-data_missing_from_datastore = {'count': len(missing_from_datastore), 'identifiers': identifiers_missing_from_datastore}
+data_missing_from_dashboard = {'count': len(identifiers_missing_from_dashboard), 'identifiers': identifiers_missing_from_dashboard}
+data_missing_from_datastore = {'count': len(identifiers_missing_from_datastore), 'identifiers': identifiers_missing_from_datastore}
 
 # Generate filenames based upon today's date
 filename_not_in_dashboard = 'not_in_dashboard-' + datetime.today().strftime("%Y%m%d") + '.json'
@@ -26,4 +26,4 @@ json.dump(data_missing_from_dashboard, open('output/'+filename_not_in_dashboard,
 json.dump(data_missing_from_datastore, open('output/'+filename_not_in_datastore, 'w'), indent=4)
 
 # Output done message
-print "Completed! Output files can be found in the 'output' directory"
+print "Comparison completed!"
