@@ -1,0 +1,7 @@
+# Shell script to download files from the IATI Datastore and IATI Dashboard
+
+# Download all activities from the Datastore. Save in the temp folder
+wget "http://datastore.iatistandard.org/api/1/access/activity.xml" -O temp/datastore_all_data.xml
+
+# Download all activities from the Datastore. Save in the temp folder
+wget "http://dashboard.iatistandard.org/stats/current/aggregated/iati_identifiers.json" -O temp/dashboard_identifiers.json
