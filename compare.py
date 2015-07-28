@@ -26,4 +26,4 @@ json.dump(data_missing_from_dashboard, open('output/'+filename_not_in_dashboard,
 json.dump(data_missing_from_datastore, open('output/'+filename_not_in_datastore, 'w'), indent=4)
 
 # Output done message
-print "Completed. Output files can be found in the 'output' directory"
+print "Completed! Output files can be found in the 'output' directory"

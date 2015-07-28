@@ -33,8 +33,13 @@ class IATIIdentifierHandler(xml.sax.ContentHandler):
 parser = xml.sax.make_parser()
 
 # Attach the IATIIdentifierHandler() class and parse downloaded data
+print "Parsing data containing raw activities downloaded from the Datastore"
 parser.setContentHandler(IATIIdentifierHandler())
 parser.parse(open('temp/datastore_all_data.xml', 'r'))
 
 # Output sample data to a JSON file in the temp directory
+print "Writing file containing Datastore identifiers"
 json.dump(datastore_identifiers, open('temp/datastore_identifiers.json', 'w'))
+
+# Output confirmation message
+print "Completed!  A JSON file containing all IATI identifiers from the IATI Datastore can be found in the 'temp' directory."
