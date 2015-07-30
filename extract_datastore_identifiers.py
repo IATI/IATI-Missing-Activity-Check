@@ -1,12 +1,16 @@
 import xml.sax
 import json
 
+# Set empty identifier
 datastore_identifiers = []
 
+# Class for identifing a IATI identifier from an XML
 class IATIIdentifierHandler(xml.sax.ContentHandler):
+    
+    # Set default values
     inIdentifier = False
     identifier = ''
-    i=0
+    i = 0
 
     def startElement(self, name, attrs):
         if name == "iati-identifier":
@@ -25,8 +29,17 @@ class IATIIdentifierHandler(xml.sax.ContentHandler):
         if self.inIdentifier:
             self.identifier += chrs
 
+# Instantiate the parser
 parser = xml.sax.make_parser()
-parser.setContentHandler(IATIIdentifierHandler())
-parser.parse(open("datastore.xml","r"))
 
-json.dump(datastore_identifiers, open('datastore_iati_identifiers.json', 'w'))
+# Attach the IATIIdentifierHandler() class and parse downloaded data
+print "Parsing data containing raw activities downloaded from the Datastore"
+parser.setContentHandler(IATIIdentifierHandler())
+parser.parse(open('temp/datastore_all_data.xml', 'r'))
+
+# Output sample data to a JSON file in the temp directory
+print "Writing file containing Datastore identifiers"
+json.dump(datastore_identifiers, open('temp/datastore_identifiers.json', 'w'))
+
+# Output confirmation message
+print "Completed!  A JSON file containing all IATI identifiers from the IATI Datastore can be found in the 'temp' directory."

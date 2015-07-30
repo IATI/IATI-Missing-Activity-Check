@@ -1,0 +1,3 @@
+# Ignore JSON and XML files in this repository
+*.xml
+*.json
