@@ -2,15 +2,15 @@
 
 # Download relevant data from the IATI Datastore and IATI Dashboard.
 echo "Downloading required data from the IATI Datastore and IATI Dashboard.  This could take a while!"
-./get_data.sh
+./get_data.sh || exit 1
 
 # Process the data from the Datastore to obtain a JSON file of IATI identifiers from the raw XML data
 echo "Extracing IATI identifiers from the raw XML downloaded from the IATI Datastore."
-python extract_datastore_identifiers.py
+python extract_datastore_identifiers.py || exit 1
 
 # Compute the differences
 echo "Computing differences between the IATI Datastore and the IATI Dashboard."
-python compare.py
+python compare.py || exit 1
 
 # Remove files in the temp folder
 echo "Removing temporary files."
